@@ -37,8 +37,13 @@ public class BoardDAOImpl implements BoardDAO {
 	// 게시물 조회
 	public BoardVO view(int bno) throws Exception {
 		// TODO Auto-generated method stub
-		return sql.selectOne(namespace + ".view", bno);
-		
+		return sql.selectOne(namespace + ".view", bno);	
+	}
+	
+	// 게시물 수정
+	@Override
+	public void modify(BoardVO vo) throws Exception{
+		sql.update(namespace + ".modify", vo);
 	}
 
 }

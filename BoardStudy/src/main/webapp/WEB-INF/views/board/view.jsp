@@ -17,6 +17,10 @@
 		<label>글내용</label>
 		<textarea cols="50" rows="5" name="content">${view.content} </textarea><br />
 		
+		<div>
+			<a href="/borad/modify?bno=${view.bno}">글수정</a>
+		</div>
+		
 <!-- 	<button type="submit">게시하기</button> -->	
 	</form>
 </body>
