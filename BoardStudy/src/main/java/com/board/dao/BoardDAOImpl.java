@@ -51,10 +51,12 @@ public class BoardDAOImpl implements BoardDAO {
 	}
 	
 	// 게시물 총수량
+	@Override
 	public int count() throws Exception{
 		return sql.selectOne(namespace + ".count");
 	}
 
+	// 게시물 목록 + 페이지기능
 	@Override
 	public List listPage(int displayPost, int postNum) throws Exception {
 		// TODO Auto-generated method stub

@@ -40,7 +40,7 @@ public class BoardController {
 	public String postWrite(BoardVO vo) throws Exception{
 		service.write(vo);
 		
-		return "redirect:/board/list";
+		return "redirect:/board/listPage?num=1";
 	}
 	
 	// 게시물 조회
@@ -70,7 +70,7 @@ public class BoardController {
 	@RequestMapping(value="/delete", method=RequestMethod.GET)
 	public String getDelete(@RequestParam("bno") int bno) throws Exception{
 		service.delete(bno);
-		return "redirect:/board/list";
+		return "redirect:/board/listPage?num=1";
 	}
 	
 	// 게시물 목록 + 페이지기능
@@ -79,12 +79,30 @@ public class BoardController {
 		
 		int count = service.count(); // 게시물 총수량
 		int postNum = 20; // 한 페이지 출력할 게시물 수량
-		int pageNum = (int)Math.ceil((double)count/postNum); // 페이지번호=(게시물총량/한페이지수량)의올림
-		int displayPost = (num - 1) * postNum;
+		int pageNum = (int)Math.ceil((double)count/postNum); // 마지막 페이지번호=(게시물총량/한페이지수량)의올림
+		int displayPost = (num - 1) * postNum; // 출력할 게시물
+		
+		int pageNum_cnt = 10; // 한 화면에 출력할 페이지수
+		int endPageNum = (int)(Math.ceil((double)num/(double)pageNum_cnt)*pageNum_cnt); // 현화면 마지막 페이지번호
+		int startPageNum = endPageNum - (pageNum_cnt - 1); // 첫번째 페이지
+		if(endPageNum > pageNum) { // 페이지 마지막 묶음에서 필요없는 페이지 안뜨게 걸러내기
+			endPageNum = pageNum;
+		}
+		
+		boolean prev = startPageNum == 1 ? false : true;
+		boolean next = endPageNum * postNum >= count ? false : true;
 		
 		List<BoardVO> list = null;
 		list = service.listPage(displayPost, postNum);
 		model.addAttribute("list", list);
 		model.addAttribute("pageNum", pageNum);
+		
+		// 페이지 시작, 끝 번호 표시
+		model.addAttribute("startPageNum", startPageNum);
+		model.addAttribute("endPageNum", endPageNum);
+		
+		// 페이지 번호 앞, 뒤의 이전, 다음 표시
+		model.addAttribute("prev", prev);
+		model.addAttribute("next", next);
 	}
 }
