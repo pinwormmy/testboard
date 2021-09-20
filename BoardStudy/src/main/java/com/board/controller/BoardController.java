@@ -60,9 +60,31 @@ public class BoardController {
 	
 	// 게시물 수정
 	@RequestMapping(value="/modify", method=RequestMethod.POST)
-	public String postmodify(BoardVO vo) throws Exception{
-		service.modify(bno);
+	public String postModify(BoardVO vo) throws Exception{
+		service.modify(vo);
 		
 		return "redirect:/board/view?bno=" + vo.getBno();
+	}
+	
+	// 게시물 삭제
+	@RequestMapping(value="/delete", method=RequestMethod.GET)
+	public String getDelete(@RequestParam("bno") int bno) throws Exception{
+		service.delete(bno);
+		return "redirect:/board/list";
+	}
+	
+	// 게시물 목록 + 페이지기능
+	@RequestMapping(value="/listPage", method=RequestMethod.GET)
+	public void getListPage(Model model, @RequestParam("num") int num) throws Exception{
+		
+		int count = service.count(); // 게시물 총수량
+		int postNum = 20; // 한 페이지 출력할 게시물 수량
+		int pageNum = (int)Math.ceil((double)count/postNum); // 페이지번호=(게시물총량/한페이지수량)의올림
+		int displayPost = (num - 1) * postNum;
+		
+		List<BoardVO> list = null;
+		list = service.listPage(displayPost, postNum);
+		model.addAttribute("list", list);
+		model.addAttribute("pageNum", pageNum);
 	}
 }

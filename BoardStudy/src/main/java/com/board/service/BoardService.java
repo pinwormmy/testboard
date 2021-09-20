@@ -2,13 +2,13 @@ package com.board.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.board.dao.BoardDAO;
 import com.board.domain.BoardVO;
 
-public interface BoardService implements BoardService{
-	
-	@Inject
-	private BoardDAO dao;
-	
+public interface BoardService{
+		
 	//게시물 목록
 	public List<BoardVO> list() throws Exception;
 	
@@ -19,9 +19,15 @@ public interface BoardService implements BoardService{
 	public BoardVO view(int bno) throws Exception;
 	
 	// 게시물 수정
+	public void modify(BoardVO vo) throws Exception;
 	
-	public void modify(BoardVO vo) throws Exception{
-		dao.modify(vo);
-	}
+	// 게시물 삭제
+	public void delete(int bno) throws Exception;
+	
+	// 게시물 총수량
+	public int count() throws Exception;
+	
+	// 게시물 목록 + 페이지기능
+	public List listPage(int displayPost, int postNum) throws Exception;
 
 }

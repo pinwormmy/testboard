@@ -41,4 +41,19 @@ public class BoardServiceImpl implements BoardService {
 		dao.modify(vo);
 	}
 
+	// 게시물 삭제
+	public void delete(int bno) throws Exception {
+		// TODO Auto-generated method stub
+		dao.delete(bno);
+	}
+	
+	// 게시물 총수량
+	public int count() throws Exception{
+		return dao.count();
+	}
+
+	// 게시물 목록 + 페이지기능
+	public List listPage(int displayPost, int postNum) throws Exception{
+		return dao.listPage(displayPost, postNum);
+	}
 }

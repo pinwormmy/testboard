@@ -34,7 +34,27 @@
 				title=#{title},
 				content=#{content},
 				writer=#{writer}
-			where bno=#{bno}
+			where bno = #{bno}
 	</update>
+	
+	<!-- 게시물 삭제 -->
+	<delete id="delete" parameterType="int">
+		delete from tbl_board
+		where bno = #{bno}
+	</delete>
+	
+	<!--  게시물 총수량 파악 -->
+	<select id="count" resultType="int">
+		select count(bno) from tbl_board
+	</select>
+	
+	<!-- 게시물 목록 + 페이지기능 -->
+	<select id = "listPage" parameterType="hashMap" resultType = "com.board.domain.BoardVO">
+		select
+			bno, title, writer, regDate, viewCnt
+		from tbl_board
+		order by bno desc
+		limit #{displayPost}, #{postNum}
+	</select>
 	
 </mapper>
