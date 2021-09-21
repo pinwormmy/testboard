@@ -2,7 +2,7 @@ package com.board.domain;
 
 public class Page {
 	
-	private int num;
+	private int num; // 현재 페이지 넘버
 	private int count; // 게시물 총수량
 	private int postNum = 30; // 한 페이지 출력할 게시물 수량 [설정수정가능]
 	private int pageNum;// 마지막 페이지번호=(게시물총량/한페이지수량)의올림
@@ -11,9 +11,8 @@ public class Page {
 	private int pageNum_cnt = 10; // 한 화면에 출력할 페이지수 [설정수정가능]
 	private int endPageNum; // 현화면 마지막 페이지번호
 	private int startPageNum; // 첫번째 페이지
-	// 페이지 이전, 다음 버튼
-	private boolean prev;
-	private boolean next;
+	private boolean prev; // [이전] 페이지 버튼
+	private boolean next; // [다음] 페이지 버튼
 	
 	
 	public void setNum(int num) {
@@ -21,7 +20,6 @@ public class Page {
 	}
 	public void setCount(int count) {
 		this.count = count;
-		
 		dataCalc();
 	}
 	public int getNum() {

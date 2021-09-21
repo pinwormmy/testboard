@@ -6,9 +6,6 @@ import com.board.domain.BoardVO;
 
 public interface BoardDAO {
 	
-	// 게시물 목록
-	public List<BoardVO> list() throws Exception;
-	
 	// 게시물 작성
 	public void write(BoardVO vo) throws Exception;
 	
@@ -25,6 +22,7 @@ public interface BoardDAO {
 	public int count() throws Exception;
 	
 	// 게시물 목록 + 페이지기능
-	public List listPage(int displayPost, int postNum) throws Exception;
+	public List<BoardVO> list(int displayPost, int postNum, 
+			String searchType, String keyword) throws Exception;
 
 }

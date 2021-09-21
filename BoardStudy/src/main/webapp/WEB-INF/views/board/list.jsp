@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>게시물 목록</title>
 </head>
 <body>
@@ -42,6 +42,51 @@
 	
 	</tbody>
 </table>
+
+<div>
+	<c:if test="${page.prev}">
+		<span>[ <a href="/board/list?num=${page.startPageNum - 1}">이전</a> ]</span>
+	</c:if>
+	<c:forEach begin="${page.startPageNum}" end="${page.endPageNum}" var="num">
+		<span>
+			<c:if test="${select != num}">
+				<a href="/board/list?num=${num}">${num}</a>
+			</c:if>
+			
+			<c:if test="${select == num}">
+				<b>${num}</b>
+			</c:if>
+		</span>
+	</c:forEach>
+	<c:if test="${page.next}">
+		<span>[ <a href="/board/list?num=${page.endPageNum + 1}">다음</a> ]</span>
+	</c:if>
+	
+	<div>
+		<select name="searchType">
+			<option value="title">제목</option>
+			<option value="content">내용</option>
+			<option value="title_content">제목+내용</option>
+			<option value="writer">작성자</option>
+		</select>
+		
+		<input type="text" name="keyword" />
+		
+		<button type="button" id="searchBtn">검색</button>
+	</div>
+</div>
+
+<script>
+	document.getElementById("searchBtn").onclick = function(){
+		let searchType = document.getElementsByName("searchType")[0].value;
+		let keyword = document.getElementsByName("keyword")[0].value;
+		
+		console.log(searchType)
+		console.log(keyword)
+		
+		location.href = "/board/list?num=1" + "&searchType=" + searchType + "&keyword=" + keyword;
+	};
+</script>
 
 </body>
 </html>

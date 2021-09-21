@@ -17,13 +17,6 @@ public class BoardDAOImpl implements BoardDAO {
 	
 	private static String namespace = "com.board.mappers.board";
 	
-	// 게시물 목록
-	@Override
-	public List<BoardVO> list() throws Exception {
-		// TODO Auto-generated method stub
-		return sql.selectList(namespace + ".list");
-	}
-
 	// 게시물 작성
 	@Override
 	public void write(BoardVO vo) throws Exception {
@@ -58,12 +51,16 @@ public class BoardDAOImpl implements BoardDAO {
 
 	// 게시물 목록 + 페이지기능
 	@Override
-	public List listPage(int displayPost, int postNum) throws Exception {
+	public List list(int displayPost, int postNum, 
+			String searchType, String keyword) throws Exception {
 		// TODO Auto-generated method stub
 		HashMap data = new HashMap();
 		data.put("displayPost", displayPost);
 		data.put("postNum", postNum);
+		
+		data.put("searchType", searchType);
+		data.put("keyword", keyword);
 				
-		return sql.selectList(namespace + ".listPage", data);
+		return sql.selectList(namespace + ".list", data);
 	}
 }

@@ -19,16 +19,6 @@ public class BoardController {
 	
 	@Autowired
 	private BoardService service;
-
-	//게시물 목록
-	@RequestMapping(value="/list", method=RequestMethod.GET)
-	public void getList(Model model) throws Exception{
-		
-		List<BoardVO> list = null;
-		list = service.list();
-		
-		model.addAttribute("list", list);
-	}
 	
 	// 게시물 작성
 	@RequestMapping(value="/write", method=RequestMethod.GET)
@@ -41,7 +31,7 @@ public class BoardController {
 	public String postWrite(BoardVO vo) throws Exception{
 		service.write(vo);
 		
-		return "redirect:/board/listPage?num=1";
+		return "redirect:/board/list?num=1";
 	}
 	
 	// 게시물 조회
@@ -71,19 +61,22 @@ public class BoardController {
 	@RequestMapping(value="/delete", method=RequestMethod.GET)
 	public String getDelete(@RequestParam("bno") int bno) throws Exception{
 		service.delete(bno);
-		return "redirect:/board/listPage?num=1";
+		return "redirect:/board/list?num=1";
 	}
 	
-	// 게시물 목록 + 페이지기능
-	@RequestMapping(value="/listPage", method=RequestMethod.GET)
-	public void getListPage(Model model, @RequestParam("num") int num) throws Exception{
+	// 게시물 목록 + 페이지 기능 + 검색 기능
+	@RequestMapping(value="/list", method=RequestMethod.GET)
+	public void getList(Model model, @RequestParam("num") int num, 
+			@RequestParam(value="searchType", required=false, defaultValue="title") String searchType, 
+			@RequestParam(value="keyword", required=false, defaultValue="") 
+			String keyword) throws Exception{
 		
 		Page page = new Page();
 		page.setNum(num);
 		page.setCount(service.count());
 		
 		List<BoardVO> list = null;
-		list = service.listPage(page.getDisplayPost(), page.getPostNum());
+		list = service.list(page.getDisplayPost(), page.getPostNum(), searchType, keyword);
 		model.addAttribute("list", list);
 		model.addAttribute("page", page);
 		model.addAttribute("select", num);

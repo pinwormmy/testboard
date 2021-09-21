@@ -8,9 +8,9 @@
 </head>
 <body>
 	<h1>안녕 안농농</h1>
-	<p> The Time on the Server is ${serverTime}.</p>
+	<p> 현재 서버기준 시간은 ${serverTime}.</p>
 	<p>
-		<a href="/board/listPage?num=1">글 목록</a><br/>
+		<a href="/board/list?num=1">글 목록</a><br/>
 		<a href="/board/write">글 작성하기</a>
 	</p>
 </body>

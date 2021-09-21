@@ -14,14 +14,7 @@ public class BoardServiceImpl implements BoardService {
 	@Autowired
 	private BoardDAO dao;
 
-	//게시물 목록
-	@Override
-	public List list() throws Exception {
-		// TODO Auto-generated method stub
-		return dao.list();
-	}
-
-	//게시물 작성
+	// 게시물 작성
 	@Override
 	public void write(BoardVO vo) throws Exception {
 		// TODO Auto-generated method stub
@@ -53,7 +46,8 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	// 게시물 목록 + 페이지기능
-	public List listPage(int displayPost, int postNum) throws Exception{
-		return dao.listPage(displayPost, postNum);
+	public List list(int displayPost, int postNum, 
+			String searchType, String keyword) throws Exception{
+		return dao.list(displayPost, postNum, searchType, keyword);
 	}
 }
