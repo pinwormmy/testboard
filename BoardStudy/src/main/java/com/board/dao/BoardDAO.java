@@ -24,5 +24,8 @@ public interface BoardDAO {
 	// 게시물 목록 + 페이지기능
 	public List<BoardVO> list(int displayPost, int postNum, 
 			String searchType, String keyword) throws Exception;
+	
+	// 검색 결과 게시물 총수량
+	public int searchCount(String searchType, String keyword) throws Exception;
 
 }

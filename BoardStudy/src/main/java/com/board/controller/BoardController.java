@@ -73,7 +73,7 @@ public class BoardController {
 		
 		Page page = new Page();
 		page.setNum(num);
-		page.setCount(service.count());
+		page.setCount(service.searchCount(searchType, keyword));
 		
 		List<BoardVO> list = null;
 		list = service.list(page.getDisplayPost(), page.getPostNum(), searchType, keyword);

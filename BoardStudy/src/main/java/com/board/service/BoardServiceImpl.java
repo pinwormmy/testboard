@@ -50,4 +50,11 @@ public class BoardServiceImpl implements BoardService {
 			String searchType, String keyword) throws Exception{
 		return dao.list(displayPost, postNum, searchType, keyword);
 	}
+
+	// 검색 결과 게시물 총수량
+	@Override
+	public int searchCount(String serachType, String keyword) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.searchCount(serachType, keyword);
+	}
 }
