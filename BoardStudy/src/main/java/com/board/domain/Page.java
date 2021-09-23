@@ -63,18 +63,27 @@ public class Page {
 	
 	// 검색 타입과 검색어 유지
 	
-	private String searchTypeKeyword;
-	
-	public void setSearchTypeKeyword(String searchType, String keyword) {
+	public String getSearchTypeKeyword() {
 		if(searchType.equals("") || keyword.equals("")) {
-			searchTypeKeyword = "";
+			return "";
 		}else {
-			searchTypeKeyword = "&searchType" + searchType + "&keyword" + keyword;
+			return "&searchType=" + searchType + "&keyword=" + keyword;
 		}
 	}
 	
-	public String getSearchTypeKeyword() {
-		return searchTypeKeyword;
-	}
+	private String searchType;
+	private String keyword;
 
+	public String getSearchType() {
+		return searchType;
+	}
+	public void setSearchType(String searchType) {
+		this.searchType = searchType;
+	}
+	public String getKeyword() {
+		return keyword;
+	}
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
 }
