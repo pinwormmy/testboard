@@ -77,7 +77,6 @@
 		</select>
 		
 		<input type="text" name="keyword" value="${page.keyword}"/>
-		
 		<button type="button" id="searchBtn">검색</button>
 	</div>
 </div>

@@ -48,7 +48,6 @@ public class Page {
 	}
 	
 	private void dataCalc() {
-		
 		endPageNum=(int)(Math.ceil((double)num/(double)pageNum_cnt)*pageNum_cnt); // 마지막 페이지번호(현페이지기준)
 		startPageNum = endPageNum - (pageNum_cnt - 1); // 시작 페이지번호
 		pageNum = (int)Math.ceil((double)count/postNum); // 마지막페이지번호(전체페이지 기준) 아래 조건문에 쓰려고 계산.
@@ -62,7 +61,6 @@ public class Page {
 	}
 	
 	// 검색 타입과 검색어 유지
-	
 	public String getSearchTypeKeyword() {
 		if(searchType.equals("") || keyword.equals("")) {
 			return "";
