@@ -23,4 +23,38 @@ public class ReplyVO {
 	private String writer;
 	private String content;
 	private Date regDate;
+	
+	
+	public int getRno() {
+		return rno;
+	}
+	public int getBno() {
+		return bno;
+	}
+	public String getWriter() {
+		return writer;
+	}
+	public String getContent() {
+		return content;
+	}
+	public Date getRegDate() {
+		return regDate;
+	}
+	public void setRno(int rno) {
+		this.rno = rno;
+	}
+	public void setBno(int bno) {
+		this.bno = bno;
+	}
+	public void setWriter(String writer) {
+		this.writer = writer;
+	}
+	public void setContent(String content) {
+		this.content = content;
+	}
+	public void setRegDate(Date regDate) {
+		this.regDate = regDate;
+	}
+	
+	
 }
