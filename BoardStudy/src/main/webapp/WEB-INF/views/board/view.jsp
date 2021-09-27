@@ -1,5 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language ="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,40 +29,33 @@
 			<a href="/board/delete?bno=${view.bno}">글삭제</a>
 		</div>
 	</form>
+	
 <!-- 댓글기능 -->
-
 <hr />
 
 <ul>
+	<c:forEach items="${reply}" var="reply">
 	<li>
 		<div>
-			<p>첫번째 댓글 작성자</p>
-			<p>첫번째 댓글</p>
+			<p>${reply.writer} / <fmt:formatDate value="${reply.regDate}" pattern="yyyy-mm-dd" /></p>
+			<p>${reply.content}</p>
 		</div>
 	</li>
-	<li>
-		<div>
-			<p>두번째 댓글 작성자</p>
-			<p>두번째 댓글</p>
-		</div>
-	</li>
-	<li>
-		<div>
-			<p>세번째 댓글 작성자</p>
-			<p>세번째 댓글</p>
-		</div>
-	</li>
+	</c:forEach>
 </ul>
 <div>
-	<p>
-		<label>댓글 작성자</label><input type="text">
-	</p>
-	<p>
-		<textarea rows="5" cols="50"></textarea>
-	</p>
-	<p>
-		<button type="button">댓글 작성</button>
-	</p>
+	<form method="post" action="/reply/write">
+		<p>
+			<label>댓글 작성자</label><input type="text" name="writer">
+		</p>
+		<p>
+			<textarea rows="5" cols="50"></textarea>
+		</p>
+		<p>
+			<input type="hidden" name="bno" value="${view.bno}">
+			<button type="button">댓글 작성</button>
+		</p>
+	</form>	
 </div>
 
 </body>
