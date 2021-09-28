@@ -44,11 +44,6 @@ public class BoardController {
 	public void getView(@RequestParam("bno") int bno, Model model) throws Exception{
 		BoardVO vo = service.view(bno);
 		model.addAttribute("view", vo);
-		
-		// 댓글 조회
-		List<ReplyVO> reply = null;
-		reply = replyService.list(bno);
-		model.addAttribute("reply", reply);
 	}
 	
 	// 게시물 수정

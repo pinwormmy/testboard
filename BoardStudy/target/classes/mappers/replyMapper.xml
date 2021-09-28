@@ -4,20 +4,21 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace = "com.board.mappers.reply">
 	
-	<!-- 댓글 조회 -->
+	<!-- 댓글 작성 -->
+	<insert id="replyWrite" parameterType="com.board.domain.ReplyVO">
+		insert into tbl_reply(bno, writer, content, regDate)
+		value(#{bno}, #{writer}, #{content}, #{regDate})
+	</insert>
 	
+	<!-- 댓글 조회 -->
 	<select id="replyList" parameterType="int" resultType="com.board.domain.ReplyVO">
 		select
 			rno, bno, writer, content, regDate
-		from tbl_reply
-			where bno = #{bno}
+		from 
+			tbl_reply
+		where 
+			bno=#{bno}
 	</select>
-	
-	<!-- 댓글 작성 -->
-	<insert id="replyWrite" parameterType="com.board.domain.ReplyVO">
-		insert into tbl_reply(bno, writer, content)
-		value(#{bno}, #{writer}, #{content})
-	</insert>
 	
 	<!-- 댓글 수정 -->
 	<update id="replyModify" parameterType="com.board.domain.ReplyVO">
@@ -34,6 +35,5 @@
 		where rno = #{rno}
 			and bno = #{bno}
 	</delete>
-	
 	
 </mapper>

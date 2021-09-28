@@ -1,11 +1,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page language ="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset = "UTF-8">
+<meta charset="UTF-8">
 <title>글조회</title>
 </head>
 <body>
@@ -37,7 +37,7 @@
 	<c:forEach items="${reply}" var="reply">
 	<li>
 		<div>
-			<p>${reply.writer} / <fmt:formatDate value="${reply.regDate}" pattern="yyyy-mm-dd" /></p>
+			<p>${reply.writer} / <fmt:formatDate value="${reply.regDate}" pattern="yy-mm-dd" /></p>
 			<p>${reply.content}</p>
 		</div>
 	</li>
